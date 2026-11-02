@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover timeless women's clothing from Modimal.">
+    <title>Modimal | Women's clothing</title>
+    <link rel="stylesheet" href="/Frontend/normalize.css">
+    <link rel="stylesheet" href="/Frontend/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,400&family=League+Spartan:wght@400;700&family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <p class="header-line">Enjoy Free Shipping On All Orders</p>
+
+        <nav class="nav-menu" aria-label="Main navigation">
+            <div class="mobile-left">
+                <button class="burger" type="button" aria-label="Open menu" data-action="toggle-menu" aria-controls="main-nav-options" aria-expanded="false">
+                    <img src="/Frontend/images/burger-menu.svg" alt="">
+                </button>
+                <button class="mobile-search header-icon" type="button" aria-label="Open search" aria-controls="search-drawer" aria-expanded="false" data-action="open-search">
+                    <img src="/Frontend/images/Header search icon.svg" alt="">
+                </button>
+            </div>
+
+            <a class="logo" href="#home" aria-label="Modimal home">
+                <img src="/Frontend/images/logo.svg" alt="Modimal">
+                <span class="logo-text">women clothing</span>
+            </a>
+
+            <div class="options" id="main-nav-options">
+                <div class="collection-nav-item">
+                    <a class="menu-item" href="#" aria-expanded="false">Collection</a>
+                    <div class="collection-mega-menu" aria-label="Collection menu">
+                        <div class="collection-menu-column">
+                            <h2>Category</h2>
+                            <a href="shop.html">Shop All</a>
+                            <a href="shop.html#collection">Blouses &amp; Top</a>
+                            <a href="shop.html#collection">Pants</a>
+                            <a href="shop.html#collection">Dresses &amp; Jumpsuits</a>
+                            <a href="shop.html#collection">Outwear &amp; Jackets</a>
+                            <a href="shop.html#collection">Pullovers</a>
+                            <a href="shop.html#collection">Tees</a>
+                            <a href="shop.html#collection">Shorts &amp; Skirts</a>
+                        </div>
+                        <div class="collection-menu-column">
+                            <h2>Featured</h2>
+                            <a href="shop.html#best-sellers">New In</a>
+                            <a href="shop.html#modiweek">Modiweek</a>
+                            <a href="shop.html#best-sellers">Plus Size</a>
+                            <a href="shop.html#best-sellers">Best Seller</a>
+                        </div>
+                        <div class="collection-menu-column">
+                            <h2>More</h2>
+                            <a href="shop.html#collection">Bundles</a>
+                            <a href="shop.html#collection">Occasion Wear</a>
+                            <a href="shop.html#collection">Matching Set</a>
+                            <a href="shop.html#collection">Suiting</a>
+                        </div>
+                        <figure class="collection-menu-promo">
+                            <div class="collection-promo-image collection-promo-blouses" role="img" aria-label="Blouse collection"></div>
+                            <figcaption>Blouses</figcaption>
+                        </figure>
+                        <figure class="collection-menu-promo">
+                            <div class="collection-promo-image collection-promo-plus-size" role="img" aria-label="Plus size collection"></div>
+                            <figcaption>Plus Size</figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <div class="new-in-nav-item">
+                    <a class="menu-item" href="#" aria-expanded="false">New In</a>
+                    <div class="new-in-menu" aria-label="New In menu">
+                        <div class="collection-menu-column">
+                            <h2>Category</h2>
+                            <a href="shop.html#best-sellers">Shop All</a>
+                            <a href="shop.html#best-sellers">Tops &amp; Blouses</a>
+                            <a href="shop.html#best-sellers">Tees</a>
+                            <a href="shop.html#best-sellers">Pants</a>
+                            <a href="shop.html#best-sellers">Jackets &amp; Outwears</a>
+                            <a href="shop.html#best-sellers">Pullovers</a>
+                            <a href="shop.html#best-sellers">Dresses &amp; Jumpsuits</a>
+                            <a href="shop.html#best-sellers">Shorts &amp; Skirts</a>
+                        </div>
+                        <div class="collection-menu-column">
+                            <h2>Trending</h2>
+                            <a href="shop.html#best-sellers">Plus Size</a>
+                            <a href="shop.html#best-sellers">Fall Collection</a>
+                            <a href="shop.html#modiweek">Modiweek</a>
+                        </div>
+                        
+                        <figure class="collection-menu-promo">
+                            <div class="collection-promo-image new-in-promo-fall" role="img" aria-label="New In fall collection"></div>
+                            <figcaption>Fall Collection</figcaption>
+                        </figure>
+                        <figure class="collection-menu-promo">
+                            <div class="collection-promo-image new-in-promo-blouses" role="img" aria-label="New In blouses"></div>
+                            <figcaption>Blouses</figcaption>
+                        </figure>
+                        <figure class="collection-menu-promo">
+                            <div class="collection-promo-image new-in-promo-dresses" role="img" aria-label="New In dresses"></div>
+                            <figcaption>Dresses</figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <a class="menu-item" href="#modiweek">Modiweek</a>
+                <div class="plus-size-nav-item">
+                    <a class="menu-item" href="#" aria-expanded="false">Plus Size</a>
+                    <div class="plus-size-menu" aria-label="Plus Size menu">
+                        <div class="collection-menu-column">
+                            <h2>Category</h2>
+                            <a href="shop.html#best-sellers">Shop All</a>
+                            <a href="shop.html#best-sellers">Top &amp; Blouses</a>
+                            <a href="shop.html#best-sellers">Tees</a>
+                            <a href="shop.html#best-sellers">Pants</a>
+                            <a href="shop.html#best-sellers">Jackets &amp; Outwears</a>
+                            <a href="shop.html#best-sellers">Pullovers</a>
+                            <a href="shop.html#best-sellers">Dresses &amp; Jumpsuits</a>
+                            <a href="shop.html#best-sellers">Shorts &amp; Skirts</a>
+                        </div>
+                        <figure class="collection-menu-promo">
+                            <div class="collection-promo-image plus-size-promo-pants" role="img" aria-label="Plus size pants"></div>
+                            <figcaption>Pants</figcaption>
+                        </figure>
+                        <figure class="collection-menu-promo">
+                            <div class="collection-promo-image plus-size-promo-dresses" role="img" aria-label="Plus size dresses"></div>
+                            <figcaption>Dresses</figcaption>
+                        </figure>
+                        <figure class="collection-menu-promo">
+                            <div class="collection-promo-image plus-size-promo-blouses" role="img" aria-label="Plus size blouses"></div>
+                            <figcaption>Blouses</figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <div class="sustainability-nav-item">
+                    <a class="menu-item" href="#" aria-expanded="false">Sustainability</a>
+                    <div class="sustainability-menu" aria-label="Sustainability menu">
+                        <div class="collection-menu-column">
+                            <h2>Sustainability</h2>
+                            <a href="#sustainability">Mission</a>
+                            <a href="#sustainability">Processing</a>
+                            <a href="#sustainability">Materials</a>
+                            <a href="#sustainability">Packaging</a>
+                            <a href="#sustainability">Product Care</a>
+                            <a href="#sustainability">Our Suppliers</a>
+                        </div>
+                        <figure class="collection-menu-promo">
+                            <div class="collection-promo-image sustainability-promo-one" role="img" aria-label="Sustainable fashion"></div>
+                        </figure>
+                        <figure class="collection-menu-promo">
+                            <div class="collection-promo-image sustainability-promo-two" role="img" aria-label="Sustainability at Modimal"></div>
+                        </figure>
+                    </div>
+                </div>
+                <div class="mobile-menu-account" role="group" aria-label="Account">
+                    <button type="button" data-action="open-account">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 8a7 7 0 0 1 14 0H5Z"/></svg>
+                        Log In
+                    </button>
+                    <button type="button" data-action="open-account">Create Account</button>
+                </div>
+            </div>
+
+            <div class="icons" role="group" aria-label="Account and shopping actions">
+                <button class="search header-icon" type="button" aria-label="Open search" aria-controls="search-drawer" aria-expanded="false" data-action="open-search">
+                    <img src="/Frontend/images/Header search icon.svg" alt="Search">
+                </button>
+                <a class="person header-icon" href="/Frontend/sign-up.html" aria-label="Account">
+                    <img src="/Frontend/images/person.svg" alt="Account">
+                </a>
+                <a class="favorite header-icon" href="/Frontend/favorites.html" aria-label="Favorites">
+                    <img src="/Frontend/images/favorite.svg" alt="Favorites">
+                </a>
+                <a class="bag header-icon" href="/Frontend/cart.html" aria-label="Shopping bag">
+                    <img src="/Frontend/images/Header bag icon.svg" alt="Shopping bag">
+                </a>
+            </div>
+            <section class="search-drawer" id="search-drawer" aria-label="Search" aria-hidden="true" hidden>
+                <form class="search-form" role="search">
+                    <label class="visually-hidden" for="site-search">Search products</label>
+                    <input id="site-search" name="q" type="search" placeholder="Search products..." autocomplete="off">
+                    <button class="search-close" type="button" aria-label="Close search" data-action="close-search">&times;</button>
+                </form>
+            </section>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home" aria-labelledby="hero-title">
+            <h1 class="hero-text" id="hero-title"><i>Elegance in simplicity,<br>Earth’s harmony</i></h1>
+            <a class="hero-button" href="#best-sellers">New In</a>
+        </section>
+
+        <div class="container">
+            <section id="best-sellers" aria-labelledby="best-sellers-title">
+                <div class="section-headings">
+                    <h2 class="section-headings-text" id="best-sellers-title">Best Sellers</h2>
+                    <a class="view-all-btn" href="#best-sellers">View All</a>
+                </div>
+
+                <div class="best-sellers-products">
+                    <article class="product-tile" data-product-id="turn-it-up-pants">
+                        <div class="product-image-wrap">
+                            <img src="/Frontend/images/tile1.png" alt="Turn It Up black tailored pants">
+                            <button class="card-action" type="button" data-action="next-product">NEXT</button>
+                            <button class="favorite-toggle" type="button" data-action="toggle-favorite" data-favorite-label="Turn It Up Pants" aria-label="Add Turn It Up Pants to favorites" aria-pressed="false">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z"></path></svg>
+                            </button>
+                        </div>
+                        <p class="product-title">Tailored Stretch</p>
+                        <div class="nameprice">
+                            <p>Turn It Up Pants</p>
+                            <p class="price"><data value="180"><b>$180</b></data></p>
+                        </div>
+                        <div class="colors" role="group" aria-label="Available colors">
+                            <button type="button" aria-label="Black" aria-pressed="false" style="--swatch-color: #0C0C0C" data-color="#0C0C0C"></button>
+                            <button type="button" aria-label="Light blue" aria-pressed="false" style="--swatch-color: #7DC3EB" data-color="#7DC3EB"></button>
+                            <button type="button" aria-label="Sage green" aria-pressed="false" style="--swatch-color: #748C70" data-color="#748C70"></button>
+                        </div>
+                    </article>
+
+                    <article class="product-tile" data-product-id="make-a-splash">
+                        <div class="product-image-wrap">
+                            <img class="product-image-small" src="/Frontend/images/tile2.png" alt="Make A Splash silk top">
+                            <button class="card-action" type="button" data-action="next-product">NEXT</button>
+                            <button class="favorite-toggle" type="button" data-action="toggle-favorite" data-favorite-label="Make A Splash" aria-label="Add Make A Splash to favorites" aria-pressed="false">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z"></path></svg>
+                            </button>
+                        </div>
+                        <p class="product-title">Technical Silk</p>
+                        <div class="nameprice">
+                            <p>Make A Splash</p>
+                            <p class="price"><data value="120"><b>$120</b></data></p>
+                        </div>
+                        <div class="colors" role="group" aria-label="Available colors">
+                            <button type="button" aria-label="Olive" aria-pressed="false" style="--swatch-color: #909225" data-color="#909225"></button>
+                            <button type="button" aria-label="Navy" aria-pressed="false" style="--swatch-color: #19418E" data-color="#19418E"></button>
+                            <button type="button" aria-label="Black" aria-pressed="false" style="--swatch-color: #0C0C0C" data-color="#0C0C0C"></button>
+                        </div>
+                    </article>
+
+                    <article class="product-tile product-title-desctop" data-product-id="anywhere-dress">
+                        <div class="product-image-wrap">
+                            <img src="/Frontend/images/tile3.png" alt="Anywhere dress">
+                            <button class="card-action" type="button" data-action="next-product">NEXT</button>
+                            <button class="favorite-toggle" type="button" data-action="toggle-favorite" data-favorite-label="Anywhere Dress" aria-label="Add Anywhere Dress to favorites" aria-pressed="false">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z"></path></svg>
+                            </button>
+                        </div>
+                        <p class="product-title">Cool Weave</p>
+                        <div class="nameprice">
+                            <p>Anywhere Dress</p>
+                            <p class="price"><data value="210"><b>$210</b></data></p>
+                        </div>
+                        <div class="colors" role="group" aria-label="Available colors">
+                            <button type="button" aria-label="Lavender" aria-pressed="false" style="--swatch-color: #D0A5EA" data-color="#D0A5EA"></button>
+                            <button type="button" aria-label="Olive" aria-pressed="false" style="--swatch-color: #909225" data-color="#909225"></button>
+                            <button type="button" aria-label="Sage green" aria-pressed="false" style="--swatch-color: #748C70" data-color="#748C70"></button>
+                        </div>
+                    </article>
+                </div>
+                <div class="counters" role="group" aria-label="Best Sellers products">
+                    <button type="button" data-action="show-best-seller" data-slide="0" aria-label="Show Turn It Up Pants" aria-pressed="true"></button>
+                    <button type="button" data-action="show-best-seller" data-slide="1" aria-label="Show Make A Splash" aria-pressed="false"></button>
+                    <button type="button" data-action="show-best-seller" data-slide="2" aria-label="Show Anywhere Dress" aria-pressed="false"></button>
+                </div>
+            </section>
+
+            <section id="collection" aria-labelledby="collection-title">
+                <div class="section-headings">
+                    <h2 class="section-headings-text" id="collection-title">Collection</h2>
+                </div>
+
+                <div class="collection-items">
+
+                    <div class="collection-column left-column">
+
+                        <div class="collection-item">
+                            <img src="/Frontend/images/row1-1.png" alt="Blouse collection">
+                            <a class="collection-button button-right" href="#best-sellers">Blouses</a>
+                        </div>
+
+                        <div class="collection-item">
+                            <img src="/Frontend/images/row1-2.png" alt="Dress collection">
+                            <a class="collection-button button-right" href="#best-sellers">Dresses</a>
+                        </div>
+                    </div>
+
+
+                    <div class="collection-column right-column">
+
+                        <div class="collection-item">
+                            <img src="/Frontend/images/row2-1.png" alt="Pants collection">
+                            <a class="collection-button button-left" href="#best-sellers">Pants</a>
+                        </div>
+
+
+                        <div class="collection-item">
+                            <img src="/Frontend/images/row2-2.jpg" alt="Outerwear collection">
+                            <a class="collection-button button-right" href="#best-sellers">Outerwear</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="modiweek" aria-labelledby="modiweek-title">
+                <div class="section-headings">
+                    <h2 class="section-headings-text" id="modiweek-title">Modiweek</h2>
+                </div>
+
+                <div class="modiweek-wrapper">
+                    <div class="modiweek">
+                        <article class="modiweek-item" data-product-id="sunday-outfit">
+                            <div class="modiweek-image">
+                                <img src="/Frontend/images/sunday.jpg" alt="Sunday outfit">
+                                <button class="card-action" type="button" data-action="add-to-cart">Add to cart</button>
+                                <button class="favorite-toggle" type="button" data-action="toggle-favorite" data-favorite-label="Sunday outfit" aria-label="Add Sunday outfit to favorites" aria-pressed="false">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z"></path></svg>
+                                </button>
+                            </div>
+                            <p>Sunday</p>
+                        </article>
+                        <article class="modiweek-item" data-product-id="monday-outfit">
+                            <div class="modiweek-image">
+                                <img src="/Frontend/images/monday.jpg" alt="Monday outfit">
+                                <button class="card-action" type="button" data-action="add-to-cart">Add to cart</button>
+                                <button class="favorite-toggle" type="button" data-action="toggle-favorite" data-favorite-label="Monday outfit" aria-label="Add Monday outfit to favorites" aria-pressed="false">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z"></path></svg>
+                                </button>
+                            </div>
+                            <p>Monday</p>
+                        </article>
+                        <article class="modiweek-item" data-product-id="tuesday-outfit">
+                            <div class="modiweek-image">
+                                <img src="/Frontend/images/tuesday.jpg" alt="Tuesday outfit">
+                                <button class="card-action" type="button" data-action="add-to-cart">Add to cart</button>
+                                <button class="favorite-toggle" type="button" data-action="toggle-favorite" data-favorite-label="Tuesday outfit" aria-label="Add Tuesday outfit to favorites" aria-pressed="false">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z"></path></svg>
+                                </button>
+                            </div>
+                            <p>Tuesday</p>
+                        </article>
+                        <article class="modiweek-item" data-product-id="wednesday-outfit">
+                            <div class="modiweek-image">
+                                <img src="/Frontend/images/wednesday.png" alt="Wednesday outfit">
+                                <button class="card-action" type="button" data-action="add-to-cart">Add to cart</button>
+                                <button class="favorite-toggle" type="button" data-action="toggle-favorite" data-favorite-label="Wednesday outfit" aria-label="Add Wednesday outfit to favorites" aria-pressed="false">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z"></path></svg>
+                                </button>
+                            </div>
+                            <p>Wednesday</p>
+                        </article>
+                        <article class="modiweek-item" data-product-id="thursday-outfit">
+                            <div class="modiweek-image">
+                                <img src="/Frontend/images/thursday.png" alt="Thursday outfit">
+                                <button class="card-action" type="button" data-action="add-to-cart">Add to cart</button>
+                                <button class="favorite-toggle" type="button" data-action="toggle-favorite" data-favorite-label="Thursday outfit" aria-label="Add Thursday outfit to favorites" aria-pressed="false">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z"></path></svg>
+                                </button>
+                            </div>
+                            <p>Thursday</p>
+                        </article>
+                    </div>
+                </div>
+                <div class="counters" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+            </section>
+        </div>
+
+        <section class="cotton-bg" id="sustainability" aria-labelledby="sustainability-title">
+            <h2 class="cotton-text" id="sustainability-title">Stylish Sustainability In Clothing Promotes Eco-Friendly Choices For A Greater Future</h2>
+            <a class="cotton-button" href="#collection">Sustainability</a>
+        </section>
+
+        <section class="container" aria-labelledby="follow-title">
+            <div class="section-headings">
+                <h2 class="section-headings-text" id="follow-title">Follow us @modimal</h2>
+            </div>
+
+            <div class="follow-us-gallery">
+                <div class="item1"><img src="images/follow-us-pic-1.jpg" alt="Modimal style inspiration"></div>
+                <div class="item2"><img src="images/follow-us-pic-2.jpg" alt="Modimal style inspiration"></div>
+                <div class="item3"><img src="images/follow-us-pic-3.jpg" alt="Modimal style inspiration"></div>
+                <div class="item4"><img src="images/follow-us-pic-4.jpg" alt="Modimal style inspiration"></div>
+                <div class="item5"><img src="images/follow-us-pic-5.jpg" alt="Modimal style inspiration"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="left-column-ft">
+                <div class="left-up-columt-ft">
+                    <form id="newsletter-form" data-form="newsletter">
+                        <div class="form-group">
+                            <label class="form-header" for="newsletter-email">Join our club, get 15% off for your Birthday</label>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-input" type="email" id="newsletter-email" name="email" placeholder="Enter Your Email Address" autocomplete="email" required>
+                            <button type="submit" class="submit-arrow" aria-label="Subscribe to newsletter">
+                                <img src="/Frontend/images/arrow.svg" alt="">
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <input class="checkbox" type="checkbox" id="newsletter-consent" name="consent" required>
+                            <label class="checkbox-text" for="newsletter-consent">By submitting your email, you agree to receive advertising emails from Modimal.</label>
+                        </div>
+                        <p class="newsletter-status" id="newsletter-status" role="status" aria-live="polite"></p>
+                    </form>
+                </div>
+                <div class="left-down-columt-ft">
+                            <div class="social" role="group" aria-label="Social media">
+                                <button type="button" aria-label="Instagram" data-action="open-social" data-network="instagram"><img src="images/instagram.svg" alt=""></button>
+                                <button type="button" aria-label="Facebook" data-action="open-social" data-network="facebook"><img src="images/facebook.svg" alt=""></button>
+                                <button type="button" aria-label="Pinterest" data-action="open-social" data-network="pinterest"><img src="images/Pinterest.svg" alt=""></button>
+                                <button type="button" aria-label="TikTok" data-action="open-social" data-network="tiktok"><img src="images/tiktok2.svg" alt=""></button>
+                    </div>
+                    <p class="rights-text">2023 Modimal. All Rights Reserved.</p>
+                </div>
+            </div>
+            <nav class="right-column-ft" aria-label="Footer navigation">
+                <div class="footer-links">
+                    <h2 class="form-header right-column-header">About Modimal</h2>
+                    <a href="#collection">Collection</a>
+                    <a href="#sustainability">Sustainability</a>
+                    <button type="button" data-action="navigate" data-page="privacy-policy">Privacy Policy</button>
+                    <button type="button" data-action="navigate" data-page="support">Support System</button>
+                    <button type="button" data-action="navigate" data-page="terms">Terms &amp; Conditions</button>
+                    <button type="button" data-action="navigate" data-page="copyright">Copyright Notice</button>
+                </div>
+                <div class="footer-links">
+                    <h2 class="form-header right-column-header">Help &amp; Support</h2>
+                    <button type="button" data-action="navigate" data-page="shipping">Orders &amp; Shipping</button>
+                    <button type="button" data-action="navigate" data-page="returns">Returns &amp; Refunds</button>
+                    <button type="button" data-action="navigate" data-page="faqs">FAQs</button>
+                    <button type="button" data-action="navigate" data-page="contact">Contact Us</button>
+                </div>
+                <div class="footer-links join-section">
+                    <h2 class="form-header right-column-header">Join Up</h2>
+                    <a href="#newsletter-form">Modimal Club</a>
+                    <button type="button" data-action="navigate" data-page="careers">Careers</button>
+                    <button type="button" data-action="navigate" data-page="visit-us">Visit Us</button>
+                </div>
+            </nav>
+        </div>
+    </footer>
+    <script src="/Frontend/main.js"></script>
+</body>
+</html>
