@@ -305,20 +305,117 @@ filterButtons.forEach(button => {
 });
 
 const checkboxes = document.querySelectorAll('#product-filters input[type="checkbox"]');
+const productFiltersForm = document.querySelector("#product-filters");
 
-checkboxes.forEach(checkbox => {
-    checkbox.addEventListener("change", () => {
-        const filterName = checkbox.name;
-        const filterValue = checkbox.value;
+const clearFiltersButton = document.querySelector('[data-action="clear-filters"]');
 
-        if (checkbox.checked) {
-            selectedFilters[filterName].push(filterValue);
-        } else {
-            selectedFilters[filterName] = selectedFilters[filterName].filter(value => value !== filterValue);
-        }
-        console.log(selectedFilters);
+if (clearFiltersButton && productFiltersForm) {
+    clearFiltersButton.addEventListener("click", () => {
+        productFiltersForm.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.checked = false;
+        });
+
+        Object.keys(selectedFilters).forEach(filterName => {
+            selectedFilters[filterName] = [];
+        });
 
         visibleProducts = 6;
         applyFilters();
     });
-});
+}
+
+const mobileFiltersTrigger = document.querySelector('[data-action="toggle-filters"]');
+const filtersPanel = document.querySelector("#filters-panel");
+const filtersBackdrop = document.querySelector(".filters-backdrop");
+const filtersCloseButton = document.querySelector(".filters-close");
+const applyFiltersButton = document.querySelector(".filter-apply");
+
+function setMobileFiltersOpen(isOpen, restoreFocus = true) {
+    if (!mobileFiltersTrigger || !filtersPanel || !filtersBackdrop) {
+        return;
+    }
+
+    filtersPanel.classList.toggle("is-open", isOpen);
+    filtersBackdrop.hidden = !isOpen;
+    mobileFiltersTrigger.setAttribute("aria-expanded", String(isOpen));
+    document.body.classList.toggle("filters-open", isOpen);
+
+    if (isOpen) {
+        filtersPanel.setAttribute("role", "dialog");
+        filtersPanel.setAttribute("aria-modal", "true");
+        filtersCloseButton.focus();
+    } else {
+        filtersPanel.removeAttribute("role");
+        filtersPanel.removeAttribute("aria-modal");
+
+        if (restoreFocus) {
+            mobileFiltersTrigger.focus();
+        }
+    }
+}
+
+if (productFiltersForm && applyFiltersButton) {
+    productFiltersForm.addEventListener("submit", event => {
+        event.preventDefault();
+
+        Object.keys(selectedFilters).forEach(filterName => {
+            selectedFilters[filterName] = [...checkboxes]
+                .filter(checkbox => checkbox.name === filterName && checkbox.checked)
+                .map(checkbox => checkbox.value);
+        });
+
+        visibleProducts = 6;
+        applyFilters();
+
+        if (filtersPanel && filtersPanel.classList.contains("is-open")) {
+            setMobileFiltersOpen(false);
+        }
+    });
+}
+
+if (mobileFiltersTrigger && filtersPanel && filtersBackdrop && filtersCloseButton) {
+    mobileFiltersTrigger.addEventListener("click", () => {
+        setMobileFiltersOpen(!filtersPanel.classList.contains("is-open"));
+    });
+
+    document.querySelectorAll('[data-action="close-filters"]').forEach(button => {
+        button.addEventListener("click", () => {
+            setMobileFiltersOpen(false);
+        });
+    });
+
+    document.addEventListener("keydown", event => {
+        if (!filtersPanel.classList.contains("is-open")) {
+            return;
+        }
+
+        if (event.key === "Escape") {
+            setMobileFiltersOpen(false);
+            return;
+        }
+
+        if (event.key !== "Tab") {
+            return;
+        }
+
+        const focusableElements = [...filtersPanel.querySelectorAll(
+            'button:not([disabled]), select:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )].filter(element => !element.closest("[hidden]"));
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (event.shiftKey && document.activeElement === firstElement) {
+            event.preventDefault();
+            lastElement.focus();
+        } else if (!event.shiftKey && document.activeElement === lastElement) {
+            event.preventDefault();
+            firstElement.focus();
+        }
+    });
+
+    window.addEventListener("resize", () => {
+        if (!window.matchMedia("(max-width: 800px)").matches && filtersPanel.classList.contains("is-open")) {
+            setMobileFiltersOpen(false, false);
+        }
+    });
+}

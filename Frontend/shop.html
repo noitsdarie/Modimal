@@ -201,14 +201,19 @@
         <section class="main-shop-section">
 
             <div class="filters-mobile">
-                <button class="filters-toggle" alt="Filters" type="button" aria-expanded="false" aria-controls="product-filters" data-action="toggle-filters">
-                    <img src="./images/Filters-mobile.svg" alt="Filters">
+                <button class="filters-toggle" type="button" aria-expanded="false" aria-controls="filters-panel" data-action="toggle-filters">
+                    <img src="./images/Filters-mobile.svg" alt="">
                     <span>Filter</span>
                 </button>
             </div>
 
-            <section class="filters" aria-labelledby="filters-title">
-                <h2 class="filters-title" id="filters-title">Filters</h2>
+            <button class="filters-backdrop" type="button" aria-label="Close filters" data-action="close-filters" hidden></button>
+
+            <section class="filters" id="filters-panel" aria-labelledby="filters-title">
+                <div class="filters-dialog-header">
+                    <h2 class="filters-title" id="filters-title">Filters</h2>
+                    <button class="filters-close" type="button" data-action="close-filters">Close</button>
+                </div>
 
                 <form id="product-filters">
                     <div class="sort-control">
@@ -383,6 +388,11 @@
                     </div>
 
                 </div>
+
+                    <div class="filter-actions">
+                        <button class="filter-clear" type="button" data-action="clear-filters">Clear filters</button>
+                        <button class="filter-apply" type="submit">Apply filters</button>
+                    </div>
 
                 </form>
             </section>
@@ -632,7 +642,7 @@
                                 <button type="button" aria-label="Pinterest" data-action="open-social" data-network="pinterest"><img src="./images/Pinterest.svg" alt=""></button>
                                 <button type="button" aria-label="TikTok" data-action="open-social" data-network="tiktok"><img src="./images/tiktok2.svg" alt=""></button>
                     </div>
-                    <p class="rights-text">2023 Modimal. All Rights Reserved.</p>
+                    <p class="rights-text">2026 Modimal. All Rights Reserved.</p>
                 </div>
             </div>
             <nav class="right-column-ft" aria-label="Footer navigation">
@@ -663,5 +673,6 @@
     </footer>
 
     <script src="./main.js"></script>
+    <script src="./favorites.js" defer></script>
 </body>
 </html>

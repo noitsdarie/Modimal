@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorites</title>
+    <link rel="stylesheet" href="./normalize.css">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./shop.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,400&family=League+Spartan:wght@400;700&family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <header class="site-header">
+        <p class="header-line">Enjoy Free Shipping On All Orders</p>
+
+        <nav class="nav-menu" aria-label="Main navigation">
+            <div class="mobile-left">
+                <button class="burger" type="button" aria-label="Open menu" data-action="toggle-menu" aria-controls="main-nav-options" aria-expanded="false">
+                    <img src="./images/burger-menu.svg" alt="">
+                </button>
+                <button class="mobile-search header-icon" type="button" aria-label="Open search" aria-controls="search-drawer" aria-expanded="false" data-action="open-search">
+                    <img src="./images/Header search icon.svg" alt="">
+                </button>
+            </div>
+
+            <a class="logo" href="./index.html" aria-label="Modimal home">
+                <img src="./images/logo.svg" alt="Modimal">
+                <span class="logo-text">women clothing</span>
+            </a>
+
+            <div class="options" id="main-nav-options">
+                <div class="collection-nav-item">
+                    <a class="menu-item" href="#" aria-expanded="false">Collection</a>
+                    <div class="collection-mega-menu" aria-label="Collection menu">
+                        <div class="collection-menu-column">
+                            <h2>Category</h2>
+                            <a href="shop.html">Shop All</a>
+                            <a href="shop.html#collection">Blouses &amp; Top</a>
+                            <a href="shop.html#collection">Pants</a>
+                            <a href="shop.html#collection">Dresses &amp; Jumpsuits</a>
+                            <a href="shop.html#collection">Outwear &amp; Jackets</a>
+                            <a href="shop.html#collection">Pullovers</a>
+                            <a href="shop.html#collection">Tees</a>
+                            <a href="shop.html#collection">Shorts &amp; Skirts</a>
+                        </div>
+                        <div class="collection-menu-column">
+                            <h2>Featured</h2>
+                            <a href="shop.html#best-sellers">New In</a>
+                            <a href="shop.html#modiweek">Modiweek</a>
+                            <a href="shop.html#best-sellers">Plus Size</a>
+                            <a href="shop.html#best-sellers">Best Seller</a>
+                        </div>
+                        <div class="collection-menu-column">
+                            <h2>More</h2>
+                            <a href="shop.html#collection">Bundles</a>
+                            <a href="shop.html#collection">Occasion Wear</a>
+                            <a href="shop.html#collection">Matching Set</a>
+                            <a href="shop.html#collection">Suiting</a>
+                        </div>
+                        <figure class="collection-menu-promo">
+                            <div class="collection-promo-image collection-promo-blouses" role="img" aria-label="Blouse collection"></div>
+                            <figcaption>Blouses</figcaption>
+                        </figure>
+                        <figure class="collection-menu-promo">
+                            <div class="collection-promo-image collection-promo-plus-size" role="img" aria-label="Plus size collection"></div>
+                            <figcaption>Plus Size</figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <div class="new-in-nav-item">
+                    <a class="menu-item" href="#" aria-expanded="false">New In</a>
+                    <div class="new-in-menu" aria-label="New In menu">
+                        <div class="collection-menu-column">
+                            <h2>Category</h2>
+                            <a href="shop.html#best-sellers">Shop All</a>
+                            <a href="shop.html#best-sellers">Tops &amp; Blouses</a>
+                            <a href="shop.html#best-sellers">Tees</a>
+                            <a href="shop.html#best-sellers">Pants</a>
+                            <a href="shop.html#best-sellers">Jackets &amp; Outwears</a>
+                            <a href="shop.html#best-sellers">Pullovers</a>
+                            <a href="shop.html#best-sellers">Dresses &amp; Jumpsuits</a>
+                            <a href="shop.html#best-sellers">Shorts &amp; Skirts</a>
+                        </div>
+                        <div class="collection-menu-column">
+                            <h2>Trending</h2>
+                            <a href="shop.html#best-sellers">Plus Size</a>
+                            <a href="shop.html#best-sellers">Fall Collection</a>
+                            <a href="shop.html#modiweek">Modiweek</a>
+                        </div>
+                        
+                        <figure class="collection-menu-promo">
+                            <div class="collection-promo-image new-in-promo-fall" role="img" aria-label="New In fall collection"></div>
+                            <figcaption>Fall Collection</figcaption>
+                        </figure>
+                        <figure class="collection-menu-promo">
+                            <div class="collection-promo-image new-in-promo-blouses" role="img" aria-label="New In blouses"></div>
+                            <figcaption>Blouses</figcaption>
+                        </figure>
+                        <figure class="collection-menu-promo">
+                            <div class="collection-promo-image new-in-promo-dresses" role="img" aria-label="New In dresses"></div>
+                            <figcaption>Dresses</figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <a class="menu-item" href="#modiweek">Modiweek</a>
+                <div class="plus-size-nav-item">
+                    <a class="menu-item" href="#" aria-expanded="false">Plus Size</a>
+                    <div class="plus-size-menu" aria-label="Plus Size menu">
+                        <div class="collection-menu-column">
+                            <h2>Category</h2>
+                            <a href="shop.html#best-sellers">Shop All</a>
+                            <a href="shop.html#best-sellers">Top &amp; Blouses</a>
+                            <a href="shop.html#best-sellers">Tees</a>
+                            <a href="shop.html#best-sellers">Pants</a>
+                            <a href="shop.html#best-sellers">Jackets &amp; Outwears</a>
+                            <a href="shop.html#best-sellers">Pullovers</a>
+                            <a href="shop.html#best-sellers">Dresses &amp; Jumpsuits</a>
+                            <a href="shop.html#best-sellers">Shorts &amp; Skirts</a>
+                        </div>
+                        <figure class="collection-menu-promo">
+                            <div class="collection-promo-image plus-size-promo-pants" role="img" aria-label="Plus size pants"></div>
+                            <figcaption>Pants</figcaption>
+                        </figure>
+                        <figure class="collection-menu-promo">
+                            <div class="collection-promo-image plus-size-promo-dresses" role="img" aria-label="Plus size dresses"></div>
+                            <figcaption>Dresses</figcaption>
+                        </figure>
+                        <figure class="collection-menu-promo">
+                            <div class="collection-promo-image plus-size-promo-blouses" role="img" aria-label="Plus size blouses"></div>
+                            <figcaption>Blouses</figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <div class="sustainability-nav-item">
+                    <a class="menu-item" href="#" aria-expanded="false">Sustainability</a>
+                    <div class="sustainability-menu" aria-label="Sustainability menu">
+                        <div class="collection-menu-column">
+                            <h2>Sustainability</h2>
+                            <a href="#sustainability">Mission</a>
+                            <a href="#sustainability">Processing</a>
+                            <a href="#sustainability">Materials</a>
+                            <a href="#sustainability">Packaging</a>
+                            <a href="#sustainability">Product Care</a>
+                            <a href="#sustainability">Our Suppliers</a>
+                        </div>
+                        <figure class="collection-menu-promo">
+                            <div class="collection-promo-image sustainability-promo-one" role="img" aria-label="Sustainable fashion"></div>
+                        </figure>
+                        <figure class="collection-menu-promo">
+                            <div class="collection-promo-image sustainability-promo-two" role="img" aria-label="Sustainability at Modimal"></div>
+                        </figure>
+                    </div>
+                </div>
+                <div class="mobile-menu-account" role="group" aria-label="Account">
+                    <button type="button" data-action="open-account">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 8a7 7 0 0 1 14 0H5Z"/></svg>
+                        Log In
+                    </button>
+                    <button type="button" data-action="open-account">Create Account</button>
+                </div>
+            </div>
+
+            <div class="icons" role="group" aria-label="Account and shopping actions">
+                <button class="search header-icon" type="button" aria-label="Open search" aria-controls="search-drawer" aria-expanded="false" data-action="open-search">
+                    <img src="./images/Header search icon.svg" alt="Search">
+                </button>
+                <a class="person header-icon" href="./sign-up.html" aria-label="Account">
+                    <img src="./images/person.svg" alt="Account">
+                </a>
+                <a class="favorite header-icon" href="./favorites.html" aria-label="Favorites">
+                    <img src="./images/favorite.svg" alt="Favorites">
+                </a>
+                <a class="bag header-icon" href="./cart.html" aria-label="Shopping bag">
+                    <img src="./images/Header bag icon.svg" alt="Shopping bag">
+                </a>
+            </div>
+
+            <section class="search-drawer" id="search-drawer" aria-label="Search" aria-hidden="true" hidden>
+                <form class="search-form" role="search">
+                    <label class="visually-hidden" for="site-search">Search products</label>
+                    <input id="site-search" name="q" type="search" placeholder="Search products..." autocomplete="off">
+                    <button class="search-close" type="button" aria-label="Close search" data-action="close-search">&times;</button>
+                </form>
+            </section>
+        </nav>
+    </header>
+    
+    <main>
+
+        <div class="breadcrumbs">
+            <a href="./index.html" style="color: #748C70;">Home&nbsp;&nbsp;&nbsp;</a> / <a href="./favorites.html">&nbsp;&nbsp;&nbsp;Favorites</a>
+        </div>
+
+        <div class="favorites-title">
+            <p>My Wish List</p>
+        </div>
+
+        <div class="item-count">
+            <span class="favorites-count">0&nbsp;</span>
+            <span class="favorites-count-label">Items</span>
+        </div>
+
+        <div class="favorites-items"></div>
+
+    </main>
+
+    
+            <footer class="site-footer">
+        <div class="footer-container">
+            <div class="left-column-ft">
+                <div class="left-up-columt-ft">
+                    <form id="newsletter-form" data-form="newsletter">
+                        <div class="form-group">
+                            <label class="form-header" for="newsletter-email">Join our club, get 15% off for your Birthday</label>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-input" type="email" id="newsletter-email" name="email" placeholder="Enter Your Email Address" autocomplete="email" required>
+                            <button type="submit" class="submit-arrow" aria-label="Subscribe to newsletter">
+                                <img src="./images/arrow.svg" alt="">
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <input class="checkbox" type="checkbox" id="newsletter-consent" name="consent" required>
+                            <label class="checkbox-text" for="newsletter-consent">By submitting your email, you agree to receive advertising emails from Modimal.</label>
+                        </div>
+                        <p class="newsletter-status" id="newsletter-status" role="status" aria-live="polite"></p>
+                    </form>
+                </div>
+                <div class="left-down-columt-ft">
+                            <div class="social" role="group" aria-label="Social media">
+                                <button type="button" aria-label="Instagram" data-action="open-social" data-network="instagram"><img src="./images/instagram.svg" alt=""></button>
+                                <button type="button" aria-label="Facebook" data-action="open-social" data-network="facebook"><img src="./images/facebook.svg" alt=""></button>
+                                <button type="button" aria-label="Pinterest" data-action="open-social" data-network="pinterest"><img src="./images/Pinterest.svg" alt=""></button>
+                                <button type="button" aria-label="TikTok" data-action="open-social" data-network="tiktok"><img src="./images/tiktok2.svg" alt=""></button>
+                    </div>
+                    <p class="rights-text">2026 Modimal. All Rights Reserved.</p>
+                </div>
+            </div>
+            <nav class="right-column-ft" aria-label="Footer navigation">
+                <div class="footer-links">
+                    <h2 class="form-header right-column-header">About Modimal</h2>
+                    <a href="#collection">Collection</a>
+                    <a href="#sustainability">Sustainability</a>
+                    <button type="button" data-action="navigate" data-page="privacy-policy">Privacy Policy</button>
+                    <button type="button" data-action="navigate" data-page="support">Support System</button>
+                    <button type="button" data-action="navigate" data-page="terms">Terms &amp; Conditions</button>
+                    <button type="button" data-action="navigate" data-page="copyright">Copyright Notice</button>
+                </div>
+                <div class="footer-links">
+                    <h2 class="form-header right-column-header">Help &amp; Support</h2>
+                    <button type="button" data-action="navigate" data-page="shipping">Orders &amp; Shipping</button>
+                    <button type="button" data-action="navigate" data-page="returns">Returns &amp; Refunds</button>
+                    <button type="button" data-action="navigate" data-page="faqs">FAQs</button>
+                    <button type="button" data-action="navigate" data-page="contact">Contact Us</button>
+                </div>
+                <div class="footer-links join-section">
+                    <h2 class="form-header right-column-header">Join Up</h2>
+                    <a href="#newsletter-form">Modimal Club</a>
+                    <button type="button" data-action="navigate" data-page="careers">Careers</button>
+                    <button type="button" data-action="navigate" data-page="visit-us">Visit Us</button>
+                </div>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="./main.js"></script>
+    <script src="./favorites.js" defer></script>
+</body>
+</html>
