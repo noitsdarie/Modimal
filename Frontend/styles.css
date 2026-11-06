@@ -347,11 +347,6 @@ img {
     margin-bottom: 15px;
 }
 
-.collection-menu-column a {
-    font-size: 14px;
-    line-height: 1.5;
-}
-
 .collection-menu-column a:hover {
     color: var(--color-primary);
 }
@@ -405,7 +400,7 @@ img {
 }
 
 .plus-size-promo-pants {
-    background-image: url("images/plus-size-pants.png");
+    background-image: url("images/plus-size-pants.jpg");
 }
 
 .sustainability-promo-one {
@@ -419,10 +414,16 @@ img {
 .collection-menu-promo figcaption {
     width: 100%;
     margin-top: 15px;
-    font-size: 14px;
     font-weight: 400;
-    font-family: "Monserrat", sans-serif;
     text-align: left;
+}
+
+.collection-menu-column a,
+.collection-menu-promo figcaption {
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
 }
 
 .options a {
@@ -1111,14 +1112,14 @@ img {
         margin-bottom: 8px;
     }
 
-    .collection-menu-column a {
-        font-size: 12px;
+    .collection-menu-column a,
+    .collection-menu-promo figcaption {
+        font-size: 14px;
         line-height: 1.35;
     }
 
     .collection-menu-promo figcaption {
         margin-top: 8px;
-        font-size: 12px;
     }
 }
 
@@ -1290,7 +1291,11 @@ img {
     .collection-menu-column a {
         display: block;
         padding: 7px 0 7px 22px;
-        font-size: clamp(10px, 2.8vw, 12px);
+    }
+
+    .collection-menu-column a,
+    .collection-menu-promo figcaption {
+        font-size: clamp(12px, 3vw, 14px);
         line-height: 1.25;
     }
 

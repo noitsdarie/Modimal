@@ -1,3 +1,103 @@
+const selectedFilters = {
+    size: [],
+    color: [],
+    collection: [],
+    fabric: []
+};
+
+const productCards = document.querySelectorAll(".product-tile-shop");
+const loadMoreButton = document.querySelector(".load-more");
+
+let visibleProducts = 6;
+
+const productsPerClick = 2;
+
+const sortSelect = document.querySelector("#sort-by");
+const originalOrder = [...productCards];
+
+function matchesFilter(product, filterName) {
+    const selectedValues = selectedFilters[filterName];
+
+    if (selectedValues.length === 0) {
+        return true;
+    }
+
+    const productValues = product.dataset[filterName].split(",");
+
+    return selectedValues.some(value => productValues.includes(value));
+}
+
+function applyFilters() {
+    const matchingProducts = [...productCards].filter(product => {
+        return Object.keys(selectedFilters).every(filterName => {
+            return matchesFilter(product, filterName);
+        });
+    });
+
+    productCards.forEach(product => {
+        product.hidden = true;
+    });
+
+    matchingProducts.slice(0, visibleProducts).forEach(product => {
+        product.hidden = false;
+    });
+
+    loadMoreButton.hidden = matchingProducts.length <= visibleProducts;
+}
+
+loadMoreButton.addEventListener("click", () => {
+    visibleProducts += productsPerClick;
+
+    applyFilters();
+});
+
+function sortProducts() {
+    const sortValue = sortSelect.value;
+
+    const sortedProducts = [...productCards];
+
+    if (sortValue === "price-low") {
+        sortedProducts.sort((a, b) => {
+            const priceA = Number(a.querySelector(".price data").value);
+            const priceB = Number(b.querySelector(".price data").value);
+
+            return priceA - priceB;
+        });
+    }
+
+    else if (sortValue === "price-high") {
+        sortedProducts.sort((a, b) => {
+            const priceA = Number(a.querySelector(".price data").value);
+            const priceB = Number(b.querySelector(".price data").value);
+
+            return priceB - priceA;
+        });
+    }
+
+    else if (sortValue === "newest") {
+        sortedProducts.sort((a, b) => {
+            return new Date(b.dataset.date) - new Date(a.dataset.date);
+        });
+    }
+
+    else if (sortValue === "featured") {
+        sortedProducts.sort((a, b) => {
+            return originalOrder.indexOf(a) - originalOrder.indexOf(b);
+        });
+    }
+
+    document.querySelector(".shop-all-items").append(...sortedProducts);
+}
+
+sortSelect.addEventListener("change", () => {
+    visibleProducts = 6;
+
+    sortProducts();
+    applyFilters();
+});
+
+applyFilters();
+
 document.addEventListener("click", (event) => {
     const button = event.target.closest('[data-action="toggle-favorite"]');
 
@@ -101,31 +201,52 @@ document.addEventListener("click", (event) => {
     return;
 });
 
-const bestSellersTrack = document.querySelector("#best-sellers .best-sellers-products");
-const bestSellerDots = document.querySelectorAll('#best-sellers [data-action="show-best-seller"]');
-let bestSellersScrollFrame = 0;
+const bestSellersTrack = document.querySelector(
+    "#best-sellers .best-sellers-products"
+);
 
-bestSellersTrack.addEventListener("scroll", () => {
-    if (bestSellersScrollFrame) {
-        cancelAnimationFrame(bestSellersScrollFrame);
-    }
+if (bestSellersTrack) {
+    const bestSellerDots = document.querySelectorAll(
+        '#best-sellers [data-action="show-best-seller"]'
+    );
 
-    bestSellersScrollFrame = requestAnimationFrame(() => {
-        const slides = [...bestSellersTrack.querySelectorAll(".product-tile")];
-        const activeIndex = slides.reduce((closestIndex, slide, index) => {
-            const closestSlide = slides[closestIndex];
-            return Math.abs(slide.offsetLeft - bestSellersTrack.offsetLeft - bestSellersTrack.scrollLeft) <
-                Math.abs(closestSlide.offsetLeft - bestSellersTrack.offsetLeft - bestSellersTrack.scrollLeft)
-                ? index
-                : closestIndex;
-        }, 0);
+    let bestSellersScrollFrame = 0;
 
-        bestSellerDots.forEach((dot, index) => {
-            dot.setAttribute("aria-pressed", String(index === activeIndex));
+    bestSellersTrack.addEventListener("scroll", () => {
+        if (bestSellersScrollFrame) {
+            cancelAnimationFrame(bestSellersScrollFrame);
+        }
+
+        bestSellersScrollFrame = requestAnimationFrame(() => {
+            const slides = [...bestSellersTrack.querySelectorAll(".product-tile")];
+
+            if (slides.length === 0) {
+                bestSellersScrollFrame = 0;
+                return;
+            }
+
+            const activeIndex = slides.reduce((closestIndex, slide, index) => {
+                const closestSlide = slides[closestIndex];
+
+                return Math.abs(
+                    slide.offsetLeft - bestSellersTrack.offsetLeft -
+                    bestSellersTrack.scrollLeft
+                ) < Math.abs(
+                    closestSlide.offsetLeft - bestSellersTrack.offsetLeft -
+                    bestSellersTrack.scrollLeft
+                )
+                    ? index
+                    : closestIndex;
+            }, 0);
+
+            bestSellerDots.forEach((dot, index) => {
+                dot.setAttribute("aria-pressed", String(index === activeIndex));
+            });
+
+            bestSellersScrollFrame = 0;
         });
-        bestSellersScrollFrame = 0;
     });
-});
+}
 
 document.addEventListener("keydown", (event) => {
     if (event.key !== "Escape") {
@@ -168,4 +289,36 @@ newsletterForm.addEventListener("submit", (event) => {
 
 newsletterForm.addEventListener("input", () => {
     newsletterStatus.textContent = "";
+});
+
+
+const filterButtons = document.querySelectorAll(".filter-toggle");
+
+filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        const optionsId = button.getAttribute("aria-controls");
+        const options = document.getElementById(optionsId);
+        const isExpanded = button.getAttribute("aria-expanded") === "true";
+        button.setAttribute("aria-expanded", String(!isExpanded));
+        options.hidden = isExpanded;
+    });
+});
+
+const checkboxes = document.querySelectorAll('#product-filters input[type="checkbox"]');
+
+checkboxes.forEach(checkbox => {
+    checkbox.addEventListener("change", () => {
+        const filterName = checkbox.name;
+        const filterValue = checkbox.value;
+
+        if (checkbox.checked) {
+            selectedFilters[filterName].push(filterValue);
+        } else {
+            selectedFilters[filterName] = selectedFilters[filterName].filter(value => value !== filterValue);
+        }
+        console.log(selectedFilters);
+
+        visibleProducts = 6;
+        applyFilters();
+    });
 });
