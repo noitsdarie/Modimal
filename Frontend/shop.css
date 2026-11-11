@@ -367,6 +367,29 @@
     margin-bottom: 32px;
 }
 
+.product-tile-shop:hover .card-action,
+.product-tile-shop:focus-within .card-action {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.catalog-status[hidden] {
+    display: none;
+}
+
+.catalog-status:not([hidden]) {
+    margin: 24px 0;
+}
+
+.shop-all-items > .product-tile.product-title-desctop:not([hidden]) {
+    display: block;
+}
+
+.shop-all-items > [hidden] {
+    display: none !important;
+}
+
 .load-more {
     grid-column: 2;
     box-sizing: border-box;

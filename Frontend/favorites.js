@@ -1,19 +1,16 @@
-
 const FAVORITES_KEY = "modimal-favorites";
-
 const favoritesContainer = document.querySelector(".favorites-items");
+const favoriteIdAliases = new Map([["Rule-zip-jacket", "rule-zip-jacket"]]);
 
-// Отримуємо збережені ID товарів
 function getFavorites() {
-    return JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
+    return (JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [])
+        .map(id => favoriteIdAliases.get(id) || id);
 }
 
-// Зберігаємо ID товарів
 function saveFavorites(favorites) {
     localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
 }
 
-// Оновлюємо лічильники на сторінці
 function updateFavoritesCount() {
     const count = getFavorites().length;
 
@@ -26,32 +23,28 @@ function updateFavoritesCount() {
     });
 }
 
-// Додаємо або видаляємо товар
 function toggleFavorite(productId) {
     const favorites = getFavorites();
-
     const updatedFavorites = favorites.includes(productId)
         ? favorites.filter(id => id !== productId)
         : [...favorites, productId];
 
     saveFavorites(updatedFavorites);
-
     return updatedFavorites;
 }
 
-// Змінюємо вигляд сердечка
 function updateFavoriteButtons() {
     document.querySelectorAll(".favorite-toggle").forEach(button => {
-        const product = button.closest(".product-tile-shop");
+        const product = button.closest("[data-product-id]");
 
-        if (!product) return;
+        if (!product) {
+            return;
+        }
 
         const isFavorite = getFavorites().includes(product.dataset.productId);
-
-        button.setAttribute("aria-pressed", String(isFavorite));
-
         const label = button.dataset.favoriteLabel || "product";
 
+        button.setAttribute("aria-pressed", String(isFavorite));
         button.setAttribute(
             "aria-label",
             `${isFavorite ? "Remove" : "Add"} ${label} ${isFavorite ? "from" : "to"} favorites`
@@ -59,95 +52,101 @@ function updateFavoriteButtons() {
     });
 }
 
-// Завантажуємо каталог для сторінки Favorites
-async function loadCatalog() {
-    const response = await fetch("./shop.html");
+async function loadFavoritesCatalog() {
+    const [products, response] = await Promise.all([
+        window.ModimalProducts.loadCatalog(),
+        fetch("./index.html")
+    ]);
 
     if (!response.ok) {
-        throw new Error("Could not load shop.html");
+        throw new Error(`Could not load ./index.html (${response.status})`);
     }
 
     const html = await response.text();
-    const parser = new DOMParser();
-    const catalogDocument = parser.parseFromString(html, "text/html");
+    const indexDocument = new DOMParser().parseFromString(html, "text/html");
+    const modiweekItems = [...indexDocument.querySelectorAll(".modiweek-item")];
 
-    return [...catalogDocument.querySelectorAll(".product-tile-shop")];
+    return { products, modiweekItems };
 }
 
-// Відображаємо улюблені товари
+function makeModiweekCard(item) {
+    const clone = item.cloneNode(true);
+    clone.classList.add("favorite-product-card");
+    clone.querySelector(".product-image-wrap")?.classList.add("favorite-product-image");
+
+    clone.querySelectorAll("[src]").forEach(element => {
+        element.src = new URL(element.getAttribute("src"), new URL("./index.html", window.location.href)).href;
+    });
+
+    return clone;
+}
+
 async function renderFavorites() {
-    if (!favoritesContainer) return;
-
-    favoritesContainer.innerHTML = "";
-
-    const favorites = getFavorites();
-
-    const countElement = document.querySelector(".favorites-count-label");
-
-    if (countElement) {
-        countElement.textContent = favorites.length === 1 ? "item" : "items";
+    if (!favoritesContainer) {
+        return;
     }
 
+    favoritesContainer.replaceChildren();
+    const favorites = getFavorites();
+
     if (favorites.length === 0) {
-        favoritesContainer.innerHTML = "<p class='empty-favorites'>Your wish list is empty.</p>";
+        const emptyMessage = document.createElement("p");
+        emptyMessage.className = "empty-favorites";
+        emptyMessage.textContent = "Your wish list is empty.";
+        favoritesContainer.append(emptyMessage);
+        updateFavoritesCount();
         return;
     }
 
     try {
-        const catalogProducts = await loadCatalog();
+        const { products, modiweekItems } = await loadFavoritesCatalog();
+        const favoriteIds = new Set(favorites);
+        const productCards = products
+            .filter(product => favoriteIds.has(product.id))
+            .map(product => {
+                const card = window.ModimalProducts.createCard(product);
+                card.classList.add("favorite-product-card");
+                card.querySelector(".shop-product-image-wrap")
+                    .classList.add("favorite-product-image");
+                return card;
+            });
+        const modiweekCards = modiweekItems
+            .filter(item => favoriteIds.has(item.dataset.productId))
+            .map(makeModiweekCard);
 
-        const favoriteProducts = catalogProducts.filter(product =>
-            favorites.includes(product.dataset.productId)
-        );
-
-        favoriteProducts.forEach(product => {
-            const productClone = product.cloneNode(true);
-
-            // Оновлюємо шляхи до зображень відносно shop.html
-            productClone.querySelectorAll("[src]").forEach(element => {
-                element.src = new URL(
-                element.getAttribute("src"),
-                new URL("./shop.html", window.location.href)
-            ).href;
-});
-
-
-            favoritesContainer.append(productClone);
-        });
-
+        favoritesContainer.append(...productCards, ...modiweekCards);
+        updateFavoritesCount();
         updateFavoriteButtons();
-
     } catch (error) {
         console.error(error);
-        favoritesContainer.innerHTML =
-            "<p>Sorry, we couldn't load your favorite products.</p>";
+        const errorMessage = document.createElement("p");
+        errorMessage.textContent = "Sorry, we couldn't load your favorite products.";
+        favoritesContainer.replaceChildren(errorMessage);
     }
 }
 
-// Обробляємо натискання на сердечка
 document.addEventListener("click", async event => {
     const button = event.target.closest(".favorite-toggle");
 
-    if (!button) return;
+    if (!button) {
+        return;
+    }
 
-    const product = button.closest(".product-tile-shop");
+    const product = button.closest("[data-product-id]");
 
-    if (!product) return;
+    if (!product) {
+        return;
+    }
 
-    const productId = product.dataset.productId;
-
-    toggleFavorite(productId);
-
+    toggleFavorite(product.dataset.productId);
     updateFavoritesCount();
     updateFavoriteButtons();
 
-    // Якщо ми на Favorites — перемальовуємо список
     if (favoritesContainer) {
         await renderFavorites();
     }
 });
 
-// Початкова ініціалізація
 async function initializeFavorites() {
     updateFavoritesCount();
 
