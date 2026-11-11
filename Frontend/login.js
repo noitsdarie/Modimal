@@ -5,8 +5,6 @@ const emailError = document.getElementById("emailError");
 const passwordError = document.getElementById("passwordError");
 
 const modal = document.getElementById("verificationModal");
-const verificationEmail = document.getElementById("verificationEmail");
-const closeModal = document.getElementById("closeModal");
 
 function clearErrors() {
     email.classList.remove("invalid");
@@ -42,15 +40,12 @@ form.addEventListener("submit", (event) => {
 
     if (!isValid) return;
 
-    verificationEmail.textContent = emailValue;
     modal.classList.add("active");
 });
 
 function hideModal() {
     modal.classList.remove("active");
 }
-
-closeModal.addEventListener("click", hideModal);
 
 modal.addEventListener("click", (event) => {
     if (event.target === modal) hideModal();

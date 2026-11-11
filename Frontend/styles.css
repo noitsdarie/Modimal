@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'MyFont';
+    src: url('./Fonts/Gill\ Sans\ MT\ Italic.ttf') format('ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
 :root {
     --color-primary: #5a6d57;
     --color-text: #404040;
@@ -478,14 +485,16 @@ img {
 
 .hero-text {
     position: absolute;
-    top: 50%;
+    top: 65%;
     left: max(8%, calc((100% - var(--content-width)) / 2));
     margin: 0;
     font-family: "Lato", sans-serif;
-    font-size: clamp(32px, 3.2vw, 50px);
+    font-size: clamp(32px, 3.2vw, 40px);
     font-weight: 400;
-    line-height: 1.5;
+    
+    line-height: 180%;
     transform: translateY(-50%);
+    color: #000000;
 }
 
 .hero-button,
@@ -1212,6 +1221,12 @@ img {
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
 }
 
+.login-modal-content {
+    min-height: 280px;
+    justify-content: space-evenly;
+    gap: 0;
+}
+
 .modal-content h2 {
     font-size: 26px;
     font-weight: 600;
@@ -1235,6 +1250,17 @@ img {
     background-color: #5A6D57;
     color: white;
     cursor: pointer;
+}
+
+.login-modal-content .home-link {
+    display: flex;
+    width: 100%;
+    height: 42px;
+    align-items: center;
+    justify-content: center;
+    background-color: #5A6D57;
+    color: white;
+    text-decoration: none;
 }
 
 
