@@ -9,8 +9,7 @@ const password = document.getElementById("psw");
 const confirmPassword = document.getElementById("confirmPassword");
 
 // Get modal elements
-const modal = document.getElementById("verificationModal");
-const verificationEmail = document.getElementById("verificationEmail");
+const modal = document.getElementById("registrationSuccessModal");
 const closeModal = document.getElementById("closeModal");
 
 
@@ -46,9 +45,7 @@ function clearErrors() {
 
 // Validate email
 function validateEmail(emailValue) {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    return emailPattern.test(emailValue);
+    return EMAIL_PATTERN.test(emailValue);
 }
 
 
@@ -98,38 +95,69 @@ function validateForm() {
 }
 
 
-// Open verification modal
-function openVerificationModal() {
-    verificationEmail.textContent = email.value.trim();
-
+// Open account-created modal
+function openRegistrationSuccessModal() {
     modal.classList.add("active");
 }
 
 
-// Close verification modal
-function closeVerificationModal() {
+// Close account-created modal
+function closeRegistrationModal() {
     modal.classList.remove("active");
 }
 
 
 // Handle form submission
+
 form.addEventListener("submit", function(event) {
+    // Не дозволяємо браузеру перезавантажити сторінку
     event.preventDefault();
 
-    if (validateForm()) {
-        openVerificationModal();
+    // Спочатку перевіряємо правильність заповнення форми
+    if (!validateForm()) {
+        return;
     }
+
+    // Реєструємо нового користувача
+    const result = registerUser(
+        firstName.value.trim(),
+        lastName.value.trim(),
+        email.value.trim(),
+        password.value
+    );
+
+    // Якщо email вже зареєстрований
+    if (!result.success) {
+        showError(email, "emailError", result.message);
+        return;
+    }
+
+    // Автоматично авторизуємо нового користувача
+    const loginResult = loginUser(email.value.trim(), password.value);
+
+    if (!loginResult.success) {
+        showError(
+            password,
+            "passwordError",
+            "Your account was created, but automatic sign-in failed. Please log in."
+        );
+        return;
+    }
+
+    // Показуємо підтвердження створення акаунта
+    openRegistrationSuccessModal();
 });
 
 
+
 // Close modal using button
-closeModal.addEventListener("click", closeVerificationModal);
+closeModal.addEventListener("click", closeRegistrationModal);
 
 
 // Close modal by clicking outside the window
 modal.addEventListener("click", function(event) {
     if (event.target === modal) {
-        closeVerificationModal();
+        closeRegistrationModal();
     }
 });
 
@@ -137,6 +165,6 @@ modal.addEventListener("click", function(event) {
 // Close modal using Escape key
 document.addEventListener("keydown", function(event) {
     if (event.key === "Escape" && modal.classList.contains("active")) {
-        closeVerificationModal();
+        closeRegistrationModal();
     }
 });

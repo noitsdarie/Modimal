@@ -19,6 +19,32 @@ const filtersBackdrop = document.querySelector(".filters-backdrop");
 const filtersCloseButton = document.querySelector(".filters-close");
 const applyFiltersButton = document.querySelector(".filter-apply");
 const clearFiltersButton = document.querySelector('[data-action="clear-filters"]');
+const categoryLabels = window.ModimalProducts.categories;
+const categoryParam = new URLSearchParams(window.location.search).get("category");
+const hasCategoryParam = categoryParam !== null;
+const isValidCategory = !hasCategoryParam ||
+    Object.prototype.hasOwnProperty.call(categoryLabels, categoryParam);
+const shopCategoryTitle = document.querySelector("#shopCategoryTitle");
+const shopCurrentBreadcrumb = document.querySelector("#shopCurrentBreadcrumb");
+const clearShopCategory = document.querySelector("#clearShopCategory");
+
+if (shopCategoryTitle) {
+    shopCategoryTitle.textContent = !hasCategoryParam
+        ? "Shop All"
+        : categoryLabels[categoryParam] || "Category not found";
+}
+
+if (shopCurrentBreadcrumb) {
+    shopCurrentBreadcrumb.textContent = `\u00a0\u00a0\u00a0${
+        !hasCategoryParam
+            ? "Shop all"
+            : categoryLabels[categoryParam] || "Category not found"
+    }`;
+}
+
+if (clearShopCategory) {
+    clearShopCategory.hidden = !hasCategoryParam;
+}
 
 let productCards = [];
 let originalOrder = [];
@@ -40,6 +66,10 @@ function matchesFilter(product, filterName) {
 
 function applyFilters() {
     const matchingProducts = productCards.filter(product =>
+        (!hasCategoryParam || (
+            isValidCategory &&
+            product.dataset.categories.split(",").includes(categoryParam)
+        )) &&
         Object.keys(selectedFilters).every(filterName =>
             matchesFilter(product, filterName)
         )
@@ -55,6 +85,19 @@ function applyFilters() {
 
     if (loadMoreButton) {
         loadMoreButton.hidden = matchingProducts.length <= visibleProducts;
+    }
+
+    if (catalogStatus) {
+        if (matchingProducts.length > 0) {
+            catalogStatus.hidden = true;
+        } else {
+            catalogStatus.textContent = !isValidCategory
+                ? "This category is not available. Choose a category from the Collection menu."
+                : hasCategoryParam
+                    ? `No products found in ${categoryLabels[categoryParam]}.`
+                    : "No products match your selected filters.";
+            catalogStatus.hidden = false;
+        }
     }
 }
 

@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,400&family=League+Spartan:wght@400;700&family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+
     <header class="site-header">
         <p class="header-line">Enjoy Free Shipping On All Orders</p>
 
@@ -206,24 +206,24 @@
                         <h1>Create Account</h1>
 
                             <input type="text" placeholder="First Name"
-                            name="firstName" id="firstName" required>
+                            name="firstName" id="firstName" autocomplete="given-name" required>
                             <span class="error-message" id="firstNameError"></span>
 
                             <input type="text" placeholder="Last Name"
-                            name="lastName" id="lastName" required>
+                            name="lastName" id="lastName" autocomplete="family-name" required>
                             <span class="error-message" id="lastNameError"></span>
 
 
-                            <input type="text" placeholder="Email"
-                            name="email" id="email" required>
+                            <input type="email" placeholder="Email"
+                            name="email" id="email" autocomplete="email" required>
                             <span class="error-message" id="emailError"></span>
 
                             <input type="password" placeholder="Password"
-                            name="psw" id="psw" required>
+                            name="psw" id="psw" autocomplete="new-password" minlength="8" required>
                             <span class="error-message" id="passwordError"></span>
 
                             <input type="password" placeholder="Confirm Password"
-                            name="confirmPassword" id="confirmPassword">
+                            name="confirmPassword" id="confirmPassword" autocomplete="new-password" required>
                             <span class="error-message" id="confirmPasswordError"></span>
 
                             <button type="submit" class="registerbtn">
@@ -238,9 +238,20 @@
                             <p>or</p>
 
                                 <div class="sign-in-options">
-                                    <span><a href="#"><img src="./images/apple.png" alt="Apple"></a></span>
-                                    <span><a href="#"><img src="./images/search.png" alt="Google"></a></span>
-                                    <span><a href="#"><img src="./images/facebook.png" alt="Facebook"></a></span>
+                                <button type="button" class="social-login-button social-login-button--apple" data-provider="apple">
+                                    <img src="./images/apple.png" alt="">
+                                    <span>Apple</span>
+                                </button>
+
+                                <button type="button" class="social-login-button social-login-button--google" data-provider="google">
+                                    <img src="./images/search.png" alt="">
+                                    <span>Google</span>
+                                </button>
+
+                                <button type="button" class="social-login-button social-login-button--facebook" data-provider="facebook">
+                                    <img src="./images/facebook.png" alt="">
+                                    <span>Facebook</span>
+                                </button>
                                 </div>
 
                                 <p class="registration-terms">
@@ -252,26 +263,108 @@
                     </div>
                 </form>
             </div>
-            <!-- Email Verification Modal -->
-            <div class="modal-overlay" id="verificationModal">
+            <!-- Registration success modal -->
+            <div class="modal-overlay" id="registrationSuccessModal">
                 <div class="modal-content" role="dialog" aria-modal="true"
                     aria-labelledby="modalTitle">
 
-                    <h2 id="modalTitle">Verify Your Email</h2>
+                    <h2 id="modalTitle">Account created</h2>
 
                     <p>
-                        We've sent a verification link to:
+                        Your account has been created and you are signed in.
                     </p>
 
-                    <p class="verification-email" id="verificationEmail"></p>
-
-                    <p>
-                        Please check your inbox and click the link to verify your account.
-                    </p>
-
-                    <button type="button" id="closeModal">Got it</button>
+                    <button type="button" id="closeModal">Continue</button>
                 </div>
             </div>
+
+                <!-- Social Authentication Modal -->
+                <div class="social-auth-overlay" id="socialAuthModal">
+
+                    <div class="social-auth-modal" role="dialog"
+                        aria-modal="true" aria-labelledby="socialAuthTitle">
+
+                        <button
+                            type="button"
+                            class="social-auth-close"
+                            id="socialAuthClose"
+                            aria-label="Close"
+                        >
+                            &times;
+                        </button>
+
+                        <div class="social-auth-logo" id="socialAuthLogo"></div>
+
+                        <h2 id="socialAuthTitle">Continue with Google</h2>
+
+                        <p id="socialAuthDescription">
+                            Choose a demo profile to continue to Modimal.
+                        </p>
+
+                        <span class="social-auth-demo-badge">DEMO MODE · NO EXTERNAL SIGN-IN</span>
+
+                        <div class="social-demo-accounts" id="socialDemoAccounts"></div>
+
+                        <div class="social-auth-divider">
+                            <span>or create a demo profile</span>
+                        </div>
+
+                        <form id="socialAuthForm" novalidate>
+                            <label class="visually-hidden" for="socialFirstName">First name</label>
+
+                            <input
+                                type="text"
+                                id="socialFirstName"
+                                placeholder="First Name"
+                                aria-describedby="socialFirstNameError"
+                                autocomplete="given-name"
+                                required
+                            >
+
+                            <span class="error-message" id="socialFirstNameError"></span>
+                            <label class="visually-hidden" for="socialLastName">Last name</label>
+
+                            <input
+                                type="text"
+                                id="socialLastName"
+                                placeholder="Last Name"
+                                aria-describedby="socialLastNameError"
+                                autocomplete="family-name"
+                                required
+                            >
+
+                            <span class="error-message" id="socialLastNameError"></span>
+                            <label class="visually-hidden" for="socialEmail">Email address</label>
+
+                            <input
+                                type="email"
+                                id="socialEmail"
+                                placeholder="Email"
+                                aria-describedby="socialEmailError"
+                                autocomplete="email"
+                                required
+                            >
+
+                            <span class="error-message" id="socialEmailError"></span>
+
+                            <button type="submit" class="registerbtn">
+                                Continue
+                            </button>
+
+                        </form>
+
+                        <div class="social-auth-success" id="socialAuthSuccess" role="status" aria-live="polite" hidden>
+                            <span class="social-auth-success-icon" aria-hidden="true">✓</span>
+                            <p id="socialAuthSuccessMessage"></p>
+                            <button type="button" class="social-auth-continue" id="socialAuthContinue">Continue to Modimal</button>
+                        </div>
+
+                        <p class="social-auth-disclaimer">
+                            Preview only. This does not connect to or share data with the selected provider.
+                        </p>
+
+                    </div>
+                </div>
     </main>
     
             <footer class="site-footer">
@@ -332,7 +425,9 @@
         </div>
     </footer>
 
+    <script src="./auth.js"></script>
     <script src="./main.js"></script>
+    <script src="./social-auth.js"></script>
     <script src="./register.js"></script>
 </body>
 </html>

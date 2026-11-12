@@ -37,14 +37,14 @@
                     <div class="collection-mega-menu" aria-label="Collection menu">
                         <div class="collection-menu-column">
                             <h2>Category</h2>
-                            <a href="shop.html">Shop All</a>
-                            <a href="shop.html#collection">Blouses &amp; Top</a>
-                            <a href="shop.html#collection">Pants</a>
-                            <a href="shop.html#collection">Dresses &amp; Jumpsuits</a>
-                            <a href="shop.html#collection">Outwear &amp; Jackets</a>
-                            <a href="shop.html#collection">Pullovers</a>
-                            <a href="shop.html#collection">Tees</a>
-                            <a href="shop.html#collection">Shorts &amp; Skirts</a>
+                            <a href="./shop.html">Shop All</a>
+                            <a href="./shop.html?category=tops">Blouses &amp; Top</a>
+                            <a href="./shop.html?category=pants">Pants</a>
+                            <a href="./shop.html?category=dresses-jumpsuits">Dresses &amp; Jumpsuits</a>
+                            <a href="./shop.html?category=outerwear-jackets">Outerwear &amp; Jackets</a>
+                            <a href="./shop.html?category=pullovers">Pullovers</a>
+                            <a href="./shop.html?category=tees">Tees</a>
+                            <a href="./shop.html?category=shorts-skirts">Shorts &amp; Skirts</a>
                         </div>
                         <div class="collection-menu-column">
                             <h2>Featured</h2>
@@ -75,14 +75,14 @@
                     <div class="new-in-menu" aria-label="New In menu">
                         <div class="collection-menu-column">
                             <h2>Category</h2>
-                            <a href="shop.html#best-sellers">Shop All</a>
-                            <a href="shop.html#best-sellers">Tops &amp; Blouses</a>
-                            <a href="shop.html#best-sellers">Tees</a>
-                            <a href="shop.html#best-sellers">Pants</a>
-                            <a href="shop.html#best-sellers">Jackets &amp; Outwears</a>
-                            <a href="shop.html#best-sellers">Pullovers</a>
-                            <a href="shop.html#best-sellers">Dresses &amp; Jumpsuits</a>
-                            <a href="shop.html#best-sellers">Shorts &amp; Skirts</a>
+                            <a href="./shop.html">Shop All</a>
+                            <a href="./shop.html?category=tops">Tops &amp; Blouses</a>
+                            <a href="./shop.html?category=tees">Tees</a>
+                            <a href="./shop.html?category=pants">Pants</a>
+                            <a href="./shop.html?category=outerwear-jackets">Jackets &amp; Outwears</a>
+                            <a href="./shop.html?category=pullovers">Pullovers</a>
+                            <a href="./shop.html?category=dresses-jumpsuits">Dresses &amp; Jumpsuits</a>
+                            <a href="./shop.html?category=shorts-skirts">Shorts &amp; Skirts</a>
                         </div>
                         <div class="collection-menu-column">
                             <h2>Trending</h2>
@@ -111,14 +111,14 @@
                     <div class="plus-size-menu" aria-label="Plus Size menu">
                         <div class="collection-menu-column">
                             <h2>Category</h2>
-                            <a href="shop.html#best-sellers">Shop All</a>
-                            <a href="shop.html#best-sellers">Top &amp; Blouses</a>
-                            <a href="shop.html#best-sellers">Tees</a>
-                            <a href="shop.html#best-sellers">Pants</a>
-                            <a href="shop.html#best-sellers">Jackets &amp; Outwears</a>
-                            <a href="shop.html#best-sellers">Pullovers</a>
-                            <a href="shop.html#best-sellers">Dresses &amp; Jumpsuits</a>
-                            <a href="shop.html#best-sellers">Shorts &amp; Skirts</a>
+                            <a href="./shop.html">Shop All</a>
+                            <a href="./shop.html?category=tops">Top &amp; Blouses</a>
+                            <a href="./shop.html?category=tees">Tees</a>
+                            <a href="./shop.html?category=pants">Pants</a>
+                            <a href="./shop.html?category=outerwear-jackets">Jackets &amp; Outwears</a>
+                            <a href="./shop.html?category=pullovers">Pullovers</a>
+                            <a href="./shop.html?category=dresses-jumpsuits">Dresses &amp; Jumpsuits</a>
+                            <a href="./shop.html?category=shorts-skirts">Shorts &amp; Skirts</a>
                         </div>
                         <figure class="collection-menu-promo">
                             <div class="collection-promo-image plus-size-promo-pants" role="img" aria-label="Plus size pants"></div>
@@ -191,12 +191,17 @@
     <main>
 
         <div class="breadcrumbs">
-            <a href="./index.html" style="color: #748C70;">Home&nbsp;&nbsp;&nbsp;</a> / <a href="./shop.html">&nbsp;&nbsp;&nbsp;Shop all</a>
+            <a href="./index.html" style="color: #748C70;">Home&nbsp;&nbsp;&nbsp;</a> / <a href="./shop.html" id="shopCurrentBreadcrumb">&nbsp;&nbsp;&nbsp;Shop all</a>
         </div>
 
         <section class="hero-shop" id="home"></section>
 
         <div class="main-block">
+
+        <div class="shop-category-heading">
+            <h1 id="shopCategoryTitle">Shop All</h1>
+            <a href="./shop.html" id="clearShopCategory" hidden>View all products</a>
+        </div>
 
         <section class="main-shop-section">
 

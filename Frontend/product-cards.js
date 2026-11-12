@@ -1,4 +1,14 @@
 (() => {
+    const categories = {
+        tops: "Blouses & Top",
+        pants: "Pants",
+        "dresses-jumpsuits": "Dresses & Jumpsuits",
+        "outerwear-jackets": "Outerwear & Jackets",
+        pullovers: "Pullovers",
+        tees: "Tees",
+        "shorts-skirts": "Shorts & Skirts"
+    };
+
     async function loadCatalog() {
         const response = await fetch("./products.json");
 
@@ -19,6 +29,7 @@
                 !product.id ||
                 !product.title ||
                 !product.name ||
+                !product.description ||
                 !Number.isFinite(product.price) ||
                 !product.image ||
                 !Array.isArray(product.sizes) ||
@@ -26,9 +37,17 @@
                 !product.fabric ||
                 !product.collection ||
                 !product.date ||
-                !Array.isArray(product.swatches)
+                !Array.isArray(product.swatches) ||
+                !Array.isArray(product.categories) ||
+                product.categories.length === 0
             ) {
                 throw new TypeError("products.json contains an incomplete product record");
+            }
+
+            if (product.categories.some(category =>
+                !Object.prototype.hasOwnProperty.call(categories, category)
+            )) {
+                throw new TypeError(`Product ${product.id} contains an unknown category`);
             }
 
             if (ids.has(product.id)) {
@@ -50,6 +69,7 @@
         card.dataset.fabric = product.fabric;
         card.dataset.collection = product.collection;
         card.dataset.date = product.date;
+        card.dataset.categories = product.categories.join(",");
 
         const imageWrap = document.createElement("div");
         imageWrap.className = "shop-product-image-wrap";
@@ -60,12 +80,13 @@
         image.loading = "lazy";
         imageWrap.append(image);
 
-        const nextButton = document.createElement("button");
-        nextButton.className = "card-action";
-        nextButton.type = "button";
-        nextButton.dataset.action = "next-product";
-        nextButton.textContent = "NEXT";
-        imageWrap.append(nextButton);
+        const productLink = document.createElement("a");
+        productLink.className = "card-action";
+        productLink.href = `./product.html?id=${encodeURIComponent(product.id)}`;
+        productLink.dataset.action = "next-product";
+        productLink.setAttribute("aria-label", `View ${product.name}`);
+        productLink.textContent = "View product";
+        imageWrap.append(productLink);
 
         const favoriteButton = document.createElement("button");
         favoriteButton.className = "favorite-toggle";
@@ -122,6 +143,7 @@
     }
 
     window.ModimalProducts = {
+        categories,
         loadCatalog,
         createCard
     };

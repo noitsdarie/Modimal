@@ -576,9 +576,12 @@ img {
     position: absolute;
     right: 5%;
     left: 5%;
+    display: flex;
     width: 90%;
     bottom: 16px;
     min-height: 44px;
+    align-items: center;
+    justify-content: center;
     padding: 10px 18px;
     border: 0;
     background: var(--color-primary);
@@ -586,6 +589,7 @@ img {
     font-size: 14px;
     font-weight: 400;
     text-align: center;
+    text-decoration: none;
     text-transform: uppercase;
     opacity: 0;
     visibility: hidden;
@@ -1026,14 +1030,25 @@ img {
 
 .favorites-items {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(10px, 20px, 30px);
-    margin: 10px 20px 0 20px;
+    width: min(calc(100% - 40px), 1020px);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    justify-content: center;
+    gap: clamp(16px, 2vw, 30px);
+    margin: 10px auto 0;
+}
+
+.favorites-items > p {
+    grid-column: 1 / -1;
+    margin: 32px 0;
+    text-align: center;
 }
 
 .favorites-items > .favorite-product-card {
     display: block;
+    width: 100%;
+    max-width: 320px;
     min-width: 0;
+    justify-self: center;
     margin: 0;
 }
 
@@ -1144,6 +1159,23 @@ img {
     font-weight: 400;
     font-size: 14px;
     line-height: 24px;
+}
+
+.account-container .password-reset-button {
+    align-self: flex-end;
+    height: auto;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #748C70;
+    font: inherit;
+    cursor: pointer;
+}
+
+.password-reset-notice {
+    margin: 0;
+    color: var(--color-text);
+    font-size: 13px;
 }
 
 .signin{
@@ -1600,26 +1632,45 @@ img {
 
     .mobile-menu-account {
         display: flex;
+        width: 100%;
         gap: 10px;
         margin-top: 22px;
         padding-top: 8px;
         border-top: 1px solid var(--color-border);
     }
 
-    .mobile-menu-account button {
+    .mobile-menu-account a {
         display: inline-flex;
         min-width: 0;
-        min-height: 34px;
-        flex: 1;
+        min-height: 40px;
+        flex: 1 1 0;
         align-items: center;
         justify-content: center;
         gap: 5px;
-        padding: 5px 8px;
+        padding: 7px 10px;
         border: 1px solid var(--color-primary);
-        background: transparent;
+        background: var(--color-surface);
         color: var(--color-primary);
-        font-size: 10px;
+        font-family: inherit;
+        font-size: 12px;
+        font-weight: 600;
+        text-decoration: none;
         white-space: nowrap;
+        transition: background-color 160ms ease, color 160ms ease;
+    }
+
+    .mobile-menu-account a:last-child {
+        background: var(--color-primary);
+        color: var(--color-surface);
+    }
+
+    .mobile-menu-account a:hover {
+        background: #edf1eb;
+    }
+
+    .mobile-menu-account a:last-child:hover {
+        background: #485844;
+        color: var(--color-surface);
     }
 
     .mobile-menu-account svg {
@@ -1814,11 +1865,6 @@ img {
         bottom: -80px;
     }
 
-    .favorites-items {
-    grid-template-columns: repeat(2, 1fr);
-}
-
-
     .main-registration-page {
         display: flex;
         flex-direction: column;
@@ -2008,9 +2054,6 @@ img {
         padding-block: 6px;
     }
 
-    .favorites-items {
-    grid-template-columns: repeat(1, 1fr);
-}
 }
 
 @media (hover: none) {
@@ -2030,5 +2073,410 @@ img {
     *::before,
     *::after {
         transition-duration: 0.01ms !important;
+    }
+}
+
+
+/* Social sign-in buttons */
+.sign-in-options {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+
+.sign-in-options .social-login-button {
+    display: inline-flex;
+    width: 100%;
+    min-height: 46px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 9px 16px;
+    border: 1px solid #d6d6d2;
+    border-radius: 2px;
+    background: #fff;
+    color: #242424;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.sign-in-options .social-login-button img {
+    display: block;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.sign-in-options .social-login-button:hover {
+    border-color: #9c9c96;
+    background: #f8f8f6;
+}
+
+.sign-in-options .social-login-button:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+}
+
+/* Social authentication overlay */
+.social-auth-overlay {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    background: rgba(22, 27, 21, 0.52);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.social-auth-overlay.active {
+    display: flex;
+}
+
+/* Social authentication window */
+.social-auth-modal {
+    position: relative;
+
+    width: 100%;
+    max-width: 440px;
+
+    max-height: min(90vh, 760px);
+    overflow-y: auto;
+
+    padding: 36px 34px 26px;
+
+    background: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.24);
+}
+
+.social-auth-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+
+    display: grid;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+
+    background: transparent;
+    color: #666;
+
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.social-auth-close:hover,
+.social-auth-close:focus-visible {
+    background: #f1f2ef;
+    color: #222;
+}
+
+.social-auth-close:focus-visible,
+.social-demo-account:focus-visible,
+.social-auth-continue:focus-visible,
+#socialAuthForm .registerbtn:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+.social-auth-logo {
+    display: grid;
+    width: 48px;
+    height: 48px;
+    place-items: center;
+    border: 1px solid #e8e8e4;
+    border-radius: 50%;
+    background: #fff;
+    color: #4285f4;
+    font-family: Arial, sans-serif;
+    font-size: 27px;
+    font-weight: 700;
+}
+
+.social-auth-modal[data-provider="apple"] .social-auth-logo {
+    background: #111;
+    color: #fff;
+}
+
+.social-auth-modal[data-provider="facebook"] .social-auth-logo {
+    color: #1877f2;
+}
+
+.social-auth-modal h2 {
+    margin: 0;
+    font-family: var(--font-family);
+    font-size: 22px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.social-auth-modal > p {
+    margin: 0;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.social-auth-demo-badge {
+    padding: 6px 9px;
+    border: 1px solid #dce5d8;
+    border-radius: 999px;
+    background: #f3f6f1;
+    color: #53694f;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-align: center;
+}
+
+.social-demo-accounts {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.social-demo-account {
+    width: 100%;
+    min-height: 68px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 11px 13px;
+
+    border: 1px solid #e1e2de;
+    border-radius: 5px;
+    background: #fff;
+
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+
+.social-demo-account:hover,
+.social-demo-account:focus-visible {
+    border-color: #9baa95;
+    background: #f8faf7;
+}
+
+.social-demo-account:hover {
+    transform: translateY(-1px);
+}
+
+.social-demo-avatar {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: #e9eee6;
+    color: #53694f;
+    font-weight: 600;
+}
+
+.social-demo-account-info {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.social-demo-account-info strong,
+.social-demo-account-info span:last-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.social-demo-account-info span:last-child {
+    color: #777;
+    font-size: 12px;
+}
+
+.social-demo-account::after {
+    width: 8px;
+    height: 8px;
+    flex: 0 0 8px;
+    margin-left: auto;
+    border-top: 1.5px solid #777;
+    border-right: 1.5px solid #777;
+    content: "";
+    transform: rotate(45deg);
+}
+
+.social-auth-divider {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: #85857f;
+    font-size: 12px;
+    text-align: center;
+}
+
+.social-auth-divider::before,
+.social-auth-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #e5e5e0;
+}
+
+#socialAuthForm {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+#socialAuthForm input {
+    width: 100%;
+    height: 46px;
+    padding: 12px 14px;
+
+    border: 1px solid #d5d7d2;
+    border-radius: 4px;
+    background: #fff;
+    color: #30302d;
+    font: inherit;
+    font-size: 14px;
+}
+
+#socialAuthForm input:focus {
+    border-color: var(--color-primary);
+    outline: 2px solid rgba(90, 109, 87, 0.14);
+}
+
+#socialAuthForm .error-message {
+    margin: -5px 0 1px;
+    text-align: left;
+}
+
+#socialAuthForm .registerbtn {
+    width: 100%;
+    min-height: 46px;
+
+    border: none;
+    border-radius: 4px;
+    background: var(--color-primary);
+    color: #fff;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 160ms ease;
+}
+
+#socialAuthForm .registerbtn:hover,
+.social-auth-continue:hover {
+    background: #485844;
+}
+
+.social-auth-success {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0 4px;
+    text-align: center;
+}
+
+.social-auth-success[hidden] {
+    display: none;
+}
+
+.social-auth-success p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.social-auth-success-icon {
+    display: grid;
+    width: 48px;
+    height: 48px;
+    place-items: center;
+    border-radius: 50%;
+    background: #edf4e9;
+    color: var(--color-primary);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.social-auth-continue {
+    width: 100%;
+    min-height: 46px;
+    border: 0;
+    border-radius: 4px;
+    background: var(--color-primary);
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.social-auth-disclaimer {
+    color: #777970;
+    font-size: 11px;
+    line-height: 1.45;
+}
+
+.social-auth-modal.is-success .social-demo-accounts,
+.social-auth-modal.is-success .social-auth-divider,
+.social-auth-modal.is-success #socialAuthForm {
+    display: none;
+}
+
+.social-auth-modal.is-success .social-auth-success {
+    animation: social-auth-success-in 180ms ease-out;
+}
+
+@keyframes social-auth-success-in {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 480px) {
+    .social-auth-modal {
+        max-height: 92vh;
+        padding: 34px 22px 22px;
+        gap: 12px;
     }
 }

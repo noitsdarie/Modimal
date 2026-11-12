@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,400&family=League+Spartan:wght@400;700&family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+
     <header class="site-header">
         <p class="header-line">Enjoy Free Shipping On All Orders</p>
 
@@ -205,14 +205,15 @@
                     <div class="account-container">
                         <h1>Log In</h1>
 
-                            <input type="text" placeholder="Email"
-                            name="email" id="email" required>
+                            <input type="email" placeholder="Email"
+                            name="email" id="email" autocomplete="email" required>
                             <span class="error-message" id="emailError"></span>
 
                             <input type="password" placeholder="Password"
-                            name="psw" id="psw" required>
+                            name="psw" id="psw" autocomplete="current-password" required>
                             <span class="error-message" id="passwordError"></span>
-                            <label style="color: #748C70;" for="password">Forgot your password?</label>
+                            <button type="button" class="password-reset-button" id="passwordResetButton">Forgot your password?</button>
+                            <p class="password-reset-notice" id="passwordResetNotice" role="status" hidden></p>
 
                             <button type="submit" class="registerbtn">
                                 Log in
@@ -222,11 +223,22 @@
 
                             <p>or</p>
 
-                                <div class="sign-in-options">
-                                    <span><a href="#"><img src="./images/apple.png" alt="Apple"></a></span>
-                                    <span><a href="#"><img src="./images/search.png" alt="Google"></a></span>
-                                    <span><a href="#"><img src="./images/facebook.png" alt="Facebook"></a></span>
-                                </div>
+                            <div class="sign-in-options">
+                                <button type="button" class="social-login-button social-login-button--apple" data-provider="apple">
+                                    <img src="./images/apple.png" alt="">
+                                    <span>Apple</span>
+                                </button>
+
+                                <button type="button" class="social-login-button social-login-button--google" data-provider="google">
+                                    <img src="./images/search.png" alt="">
+                                    <span>Google</span>
+                                </button>
+
+                                <button type="button" class="social-login-button social-login-button--facebook" data-provider="facebook">
+                                    <img src="./images/facebook.png" alt="">
+                                    <span>Facebook</span>
+                                </button>
+                            </div>
                                 <p>New to Modimal?
                                 <a id="registration-button" href="./sign-up.html" style="color: #748C70;">Create an account</a>.
                             </p>
@@ -234,7 +246,7 @@
                     </div>
                 </form>
             </div>
-            <!-- Email Verification Modal -->
+            <!-- Login success modal -->
             <div class="modal-overlay" id="verificationModal">
                 <div class="modal-content login-modal-content" role="dialog" aria-modal="true"
                     aria-labelledby="modalTitle">
@@ -252,6 +264,95 @@
                     <a class="home-link" href="./index.html">Create your own style</a>
                 </div>
             </div>
+
+        <!-- Social Authentication Modal -->
+        <div class="social-auth-overlay" id="socialAuthModal">
+
+            <div class="social-auth-modal" role="dialog"
+                aria-modal="true" aria-labelledby="socialAuthTitle">
+
+                <button
+                    type="button"
+                    class="social-auth-close"
+                    id="socialAuthClose"
+                    aria-label="Close"
+                >
+                    &times;
+                </button>
+
+                <div class="social-auth-logo" id="socialAuthLogo"></div>
+
+                <h2 id="socialAuthTitle">Continue with Google</h2>
+
+                <p id="socialAuthDescription">
+                    Choose a demo profile to continue to Modimal.
+                </p>
+
+                <span class="social-auth-demo-badge">DEMO MODE · NO EXTERNAL SIGN-IN</span>
+
+                <div class="social-demo-accounts" id="socialDemoAccounts"></div>
+
+                <div class="social-auth-divider">
+                    <span>or create a demo profile</span>
+                </div>
+
+                <form id="socialAuthForm" novalidate>
+                    <label class="visually-hidden" for="socialFirstName">First name</label>
+
+                    <input
+                        type="text"
+                        id="socialFirstName"
+                        placeholder="First Name"
+                        aria-describedby="socialFirstNameError"
+                        autocomplete="given-name"
+                        required
+                    >
+
+                    <span class="error-message" id="socialFirstNameError"></span>
+                    <label class="visually-hidden" for="socialLastName">Last name</label>
+
+                    <input
+                        type="text"
+                        id="socialLastName"
+                        placeholder="Last Name"
+                        aria-describedby="socialLastNameError"
+                        autocomplete="family-name"
+                        required
+                    >
+
+                    <span class="error-message" id="socialLastNameError"></span>
+                    <label class="visually-hidden" for="socialEmail">Email address</label>
+
+                    <input
+                        type="email"
+                        id="socialEmail"
+                        placeholder="Email"
+                        aria-describedby="socialEmailError"
+                        autocomplete="email"
+                        required
+                    >
+
+                    <span class="error-message" id="socialEmailError"></span>
+
+                    <button type="submit" class="registerbtn">
+                        Continue
+                    </button>
+
+                </form>
+
+                <div class="social-auth-success" id="socialAuthSuccess" role="status" aria-live="polite" hidden>
+                    <span class="social-auth-success-icon" aria-hidden="true">✓</span>
+                    <p id="socialAuthSuccessMessage"></p>
+                    <button type="button" class="social-auth-continue" id="socialAuthContinue">Continue to Modimal</button>
+                </div>
+
+                <p class="social-auth-disclaimer">
+                    Preview only. This does not connect to or share data with the selected provider.
+                </p>
+
+            </div>
+        </div>
+
     </main>
     
             <footer class="site-footer">
@@ -312,7 +413,9 @@
         </div>
     </footer>
 
+    <script src="./auth.js"></script>
     <script src="./main.js"></script>
+    <script src="./social-auth.js"></script>
     <script src="./login.js"></script>
 </body>
 </html>
