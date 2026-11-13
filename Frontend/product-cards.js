@@ -102,14 +102,22 @@
 
         const title = document.createElement("p");
         title.className = "product-title";
-        title.textContent = product.title;
+        const titleLink = document.createElement("a");
+        titleLink.className = "product-card-link";
+        titleLink.href = `./product.html?id=${encodeURIComponent(product.id)}`;
+        titleLink.textContent = product.title;
+        title.append(titleLink);
         card.append(title);
 
         const namePrice = document.createElement("div");
         namePrice.className = "nameprice";
 
         const name = document.createElement("p");
-        name.textContent = product.name;
+        const nameLink = document.createElement("a");
+        nameLink.className = "product-card-link";
+        nameLink.href = `./product.html?id=${encodeURIComponent(product.id)}`;
+        nameLink.textContent = product.name;
+        name.append(nameLink);
         namePrice.append(name);
 
         const price = document.createElement("p");

@@ -1,6 +1,9 @@
 const productDetail = document.querySelector("#productDetail");
 const productPageStatus = document.querySelector("#productPageStatus");
 const productNotFound = document.querySelector("#productNotFound");
+const productBackLink = document.querySelector("#productBackLink");
+const productRecommendations = document.querySelector("#productRecommendations");
+const productRecommendationsGrid = document.querySelector("#productRecommendationsGrid");
 const productId = new URLSearchParams(window.location.search).get("id");
 
 function showProductNotFound(message) {
@@ -11,7 +14,7 @@ function showProductNotFound(message) {
     }
 }
 
-function renderProduct(product) {
+function renderProduct(product, products) {
     const image = document.querySelector("#productImage");
     const swatches = document.querySelector("#productColors");
     const selectedColor = document.querySelector("#selectedColor");
@@ -53,6 +56,25 @@ function renderProduct(product) {
     selectedColor.textContent = product.swatches[0]?.name || "";
     productPageStatus.hidden = true;
     productDetail.hidden = false;
+    productBackLink.hidden = false;
+
+    const relatedProducts = products
+        .filter(item => item.id !== product.id)
+        .sort((a, b) => {
+            const sharedCategoriesA = a.categories.filter(category =>
+                product.categories.includes(category)
+            ).length;
+            const sharedCategoriesB = b.categories.filter(category =>
+                product.categories.includes(category)
+            ).length;
+            return sharedCategoriesB - sharedCategoriesA;
+        })
+        .slice(0, 4);
+
+    productRecommendationsGrid.replaceChildren(
+        ...relatedProducts.map(item => window.ModimalProducts.createCard(item))
+    );
+    productRecommendations.hidden = relatedProducts.length === 0;
 }
 
 async function initializeProductPage() {
@@ -70,7 +92,7 @@ async function initializeProductPage() {
             return;
         }
 
-        renderProduct(product);
+        renderProduct(product, products);
     } catch (error) {
         console.error(error);
         showProductNotFound("Sorry, we couldn't load this product. Please try again later.");
